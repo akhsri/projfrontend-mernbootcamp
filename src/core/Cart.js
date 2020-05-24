@@ -17,19 +17,25 @@ const Cart = () => {
     const loadAllProducts = (products) => {
         return (
             <div>
-                <h2>This section is to load all products</h2>
-                {products.map((product, index) => {
-                    return (
-                        <Card
-                            key={index}
-                            product={product}
-                            removeFromCart={true}
-                            addToCart={false}
-                            setReload={setReload}
-                            reload={reload}
-                        />
-                    )
-                })}
+                <span>
+                    <h2>Shopping Cart</h2>
+                </span>
+                <div className="row">
+                    {products.map((product, index) => {
+                        return (
+                            <div className="col-4 mb-4">
+                                <Card
+                                    key={index}
+                                    product={product}
+                                    removeFromCart={true}
+                                    addToCart={false}
+                                    setReload={setReload}
+                                    reload={reload}
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
@@ -45,12 +51,12 @@ const Cart = () => {
     return (
         <Base title="Cart Page" description="Ready to checkout">
             <div className="row  text-center">
-                <div className="col-6">{products.length > 0 ? (
+                <div className="col-9">{products.length > 0 ? (
                     loadAllProducts(products)
                 ) : (
                         <h3>No product in cart</h3>
                     )}</div>
-                <div className="col-6"><PaymentB products={products} setReload={setReload} /></div>
+                <div className="col-3"><PaymentB products={products} setReload={setReload} /></div>
 
             </div>
         </Base>

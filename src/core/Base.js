@@ -1,35 +1,42 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Menu from './Menu';
+import Footer from './Footer';
 
 
 const Base = (
-    { title = "My Title",
-        description = "My description",
-        className = "bg-dark text-white",
+    { title = "",
+        description = "",
+        className = "bg-light text-dark",
         children }
 ) => {
     return (
-        <div>
-            <Menu />
-            <div className="container-fluid">
-                <div className="jumbotron bg-dark text-white text-center mb-0">
-                    <h1 className="display-4">{title}</h1>
-                    <p className="lead">{description}</p>
+        <Fragment>
+            <div className="bg-light" >
+                <Menu />
+                <div id="home">
+                    <div className="container-fluid">
+
+                        <div className={className}>{children}</div>
+                    </div>
+
                 </div>
-                <div className={className}>{children}</div>
+                <div>
+                    <Footer />
+                </div>
+
             </div>
-            <footer className="footer bg-dark mt-auto py-3">
-                <div className="container-fluid bg-success text-white text-center ">
-                    <h4>If you got any questions, feel free to reach out!</h4>
-                    <button className="btn btn-warning btn-lg">Contact Us</button>
-                </div>
-                <div className="container">
-                    <span className="text-muted">An amazing <span className="text-white">MERN</span> Bootcamp</span>
-                </div>
+            <style>{`
+            #home{
+                margin: 50px
+            }
 
-            </footer>
-
-        </div>
+            
+           
+              
+              
+              
+        `}</style>
+        </Fragment>
     )
 }
 

@@ -3,68 +3,104 @@ import { Link, withRouter } from "react-router-dom"
 import { signout, isAuthenticated } from '../auth/helper';
 
 
+const { user } = isAuthenticated();
+
 const currentTab = (history, path) => {
     if (history.location.pathname === path) {
-        return { color: "#2ecc72" }
+        return { color: "#ad494c" }
     } else {
-        return { color: "#FFFFFF" }
+        return { color: "#dc4348" }
     }
 }
 
 const Menu = ({ history }) => {
     return (
-        <div className="text-light">
-            <ul className="nav nav-tabs bg-dark">
-                <li className="nav-item">
-                    <Link style={currentTab(history, "/")} className="nav-link" to="/">
-                        Home
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={currentTab(history, "/cart")} className="nav-link" to="/cart">
-                        Cart
-                    </Link>
-                </li>
-                {isAuthenticated() && isAuthenticated().user.role === 0 && (
+        <div className="navbar navbar-fixed-top container-fluid navbar-expand-sm navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo03" >
+                <ul className="navbar-nav mr-auto  ">
                     <li className="nav-item">
-                        <Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dashboard">
-                            U.  Dashboard
-                    </Link>
+                        <Link style={currentTab(history, "/landingpage")} className="nav-link" to="/landingpage">
+                            Home
+                        </Link>
                     </li>
-                )}
-                {isAuthenticated() && isAuthenticated().user.role === 1 && (
                     <li className="nav-item">
-                        <Link style={currentTab(history, "/admin/dashboard")} className="nav-link" to="/admin/dashboard">
-                            A. Dashboard
-                     </Link>
+                        <Link style={currentTab(history, "/")} className="nav-link" to="/">
+                            Shop
+                        </Link>
                     </li>
-                )}
-                {!isAuthenticated() && (
-                    <Fragment>
+
+
+                    {isAuthenticated() && isAuthenticated().user.role === 0 && (
                         <li className="nav-item">
-                            <Link style={currentTab(history, "/signup")} className="nav-link" to="/signup">
-                                Signup
-                    </Link>
+                            <Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dashboard">
+                                U.  Dashboard
+                            </Link>
                         </li>
+                    )}
+                    {isAuthenticated() && isAuthenticated().user.role === 1 && (
                         <li className="nav-item">
-                            <Link style={currentTab(history, "/signin")} className="nav-link" to="/signin">
-                                Signin
-                    </Link>
+                            <Link style={currentTab(history, "/admin/dashboard")} className="nav-link" to="/admin/dashboard">
+                                Dashboard
+                            </Link>
                         </li>
-                    </Fragment>
-                )}
-                {isAuthenticated() && (
+                    )}
+                    {!isAuthenticated() && (
+                        <Fragment>
+                            <li className="nav-item">
+                                <Link style={currentTab(history, "/signup")} className="nav-link" to="/signup">
+                                    Signup
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link style={currentTab(history, "/signin")} className="nav-link" to="/signin">
+                                    Signin
+                                </Link>
+                            </li>
+                        </Fragment>
+                    )}
+                    {isAuthenticated() && (
+                        <li className="nav-item">
+                            <span className="nav-link "
+                                onClick={() => {
+                                    signout(() => {
+                                        history.push("/")
+                                    })
+                                }}
+
+                            > Signout</span>
+                        </li>
+                    )}
+
+                </ul>
+                <ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input
+                            className="form-control mr-sm-2"
+                            type="search" placeholder="What are you looking for?"
+                            aria-label="Search"
+                        />
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </ul>
+                <ul className="navbar-nav navbar-right pr-5 pt-2">
                     <li className="nav-item">
-                        <span className="nav-link text-warning"
-                            onClick={() => {
-                                signout(() => {
-                                    history.push("/")
-                                })
-                            }}
-                        > Signout</span>
+                        <h6 style={{ color: "#dc4348" }}>Hello, {user.name}</h6>
                     </li>
-                )}
-            </ul>
+                </ul>
+                <ul className="navbar-nav navbar-right pr-5 pt-2">
+                    <li className="nav-item">
+                        <Link style={currentTab(history, "/cart")} className="nav-link  " to="/cart">
+                            <span className="material-icons" >
+                                shopping_cart
+                            </span>
+
+                        </Link>
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }
