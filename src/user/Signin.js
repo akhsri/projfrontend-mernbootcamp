@@ -89,11 +89,11 @@ const Signin = () => {
                     <form>
 
                         <div className="form-group">
-                            <label className="text-light">Email</label>
+                            <label className="text-secondary">Email</label>
                             <input onChange={handleChange("email")} value={email} className="form-control" type="email" />
                         </div>
                         <div className="form-group">
-                            <label className="text-light">Password</label>
+                            <label className="text-secondary">Password</label>
                             <input onChange={handleChange("password")} value={password} className="form-control" type="password" />
                         </div>
                         <button onClick={onSubmit} className="btn btn-success btn-block">Submit</button>
@@ -109,7 +109,7 @@ const Signin = () => {
             {errorMessage()}
             {signInForm()}
             {performRedirect()}
-            <p className="text-white text-center">{JSON.stringify(values)}</p>
+
         </Base>
     )
 }

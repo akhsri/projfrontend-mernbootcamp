@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import ImageHelper from './helper/ImageHelper';
 import { red } from 'color-name';
 import { addItemToCart, removeItemFromCart } from './helper/cartHelper';
@@ -36,7 +36,7 @@ const Card = ({ product,
             addToCart &&
             <button
                 onClick={addtoCart}
-                className="btn btn-block btn-outline-success mt-2 mb-2"
+                className="btn btn-block btn-outline-danger mt-2 mb-2 "
             >
                 Add to Cart
             </button>
@@ -59,25 +59,29 @@ const Card = ({ product,
     }
 
     return (
-        <div className="card text-white bg-dark border border-info ">
-            <div className="card-header lead">{cardTitle}</div>
-            <div className="card-body">
-                {getARedirect(redirect)}
-                <ImageHelper product={product} />
-                <p className="lead bg-success font-weight-normal text-wrap">
-                    {cardDescription}
-                </p>
-                <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
-                <div className="row">
-                    <div className="col-12">
-                        {showAddToCart(addToCart)}
-                    </div>
-                    <div className="col-12">
-                        {showRemoveFromCart(removeFromCart)}
+        <Fragment>
+            <div className="card text-dark bg-light border border-gray" id="card">
+                <div className="card-header lead">{cardTitle}</div>
+                <div className="card-body">
+                    {getARedirect(redirect)}
+                    <ImageHelper product={product} />
+
+                    <h4 className="lead font-weight-normal text-wrap  py-2">
+                        {cardDescription}
+                    </h4>
+                    <h4 className="btn btn-danger rounded  btn-sm px-4">$ {cardPrice}</h4>
+                    <div className="row">
+                        <div className="col-12">
+                            {showAddToCart(addToCart)}
+                        </div>
+                        <div className="col-12">
+                            {showRemoveFromCart(removeFromCart)}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        </Fragment>
     );
 };
 
