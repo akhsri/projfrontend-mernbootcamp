@@ -44,7 +44,10 @@ const Signup = () => {
     const signUpForm = () => {
         return (
             <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left">
+                <div className="col-md-6 offset-sm-3 text-left border p-5">
+                    <div className=" text-center">
+                        <h2>Signup</h2>
+                    </div>
                     <form>
                         <div className="form-group">
                             <label className="text-secondary">Name</label>

@@ -35,13 +35,13 @@ const PaymentB = ({ products, setReload = f => f, reload = undefined }) => {
     const showbtdropIn = () => {
         return (
             <div>
-                {info.clientToken !== null && products.length > 0 ? (
+                {info.clientToken !== null && products !== undefined && products.length > 0 ? (
                     <div>
                         <DropIn
                             options={{ authorization: info.clientToken }}
                             onInstance={instance => (info.instance = instance)}
                         />
-                        <button className="btn btn-block btn-success" onClick={onPurchase}>Buy</button>
+                        <button className="btn btn-block btn-danger" onClick={onPurchase} style={{ backgroundColor: "lightcoral" }}>Buy</button>
                     </div>
                 ) : (
                         <h3>Please login or add something to cart</h3>
@@ -91,15 +91,19 @@ const PaymentB = ({ products, setReload = f => f, reload = undefined }) => {
 
     const getAmount = () => {
         let amount = 0
-        products.map(p => {
-            amount = amount + p.price
-        })
+        if (products) {
+            products.map(p => {
+                amount = amount + p.price
+            })
+        }
         return amount
     }
 
     return (
         <div>
-            <h3>Your bill is {getAmount()} $ </h3>
+            <div className="p-2" style={{ backgroundColor: "lightgray" }}>
+                <h4>Your bill is {getAmount()} $ </h4>
+            </div>
             {showbtdropIn()}
         </div>
     )

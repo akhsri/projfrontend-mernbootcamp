@@ -51,7 +51,7 @@ const Signin = () => {
             if (user && user.role === 1) {
                 return <Redirect to="/admin/dashboard" />
             } else {
-                return <Redirect to="/user/dashboard" />
+                return <Redirect to="/landingpage" />
             }
         }
         if (isAuthenticated()) {
@@ -84,20 +84,27 @@ const Signin = () => {
 
     const signInForm = () => {
         return (
-            <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left">
-                    <form>
+            <div className="row  m-5" id="signin">
 
-                        <div className="form-group">
-                            <label className="text-secondary">Email</label>
-                            <input onChange={handleChange("email")} value={email} className="form-control" type="email" />
+                <div className="col-md-6 offset-sm-3 text-left border p-5">
+                    <div >
+                        <div className="text-center">
+                            <h2>Signin</h2>
+
                         </div>
-                        <div className="form-group">
-                            <label className="text-secondary">Password</label>
-                            <input onChange={handleChange("password")} value={password} className="form-control" type="password" />
-                        </div>
-                        <button onClick={onSubmit} className="btn btn-success btn-block">Submit</button>
-                    </form>
+                        <form>
+
+                            <div className="form-group">
+                                <label className="text-secondary">Email</label>
+                                <input onChange={handleChange("email")} value={email} className="form-control" type="email" />
+                            </div>
+                            <div className="form-group">
+                                <label className="text-secondary">Password</label>
+                                <input onChange={handleChange("password")} value={password} className="form-control" type="password" />
+                            </div>
+                            <button onClick={onSubmit} className="btn btn-success btn-block">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

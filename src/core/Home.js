@@ -32,7 +32,7 @@ export default function Home() {
                     <div className="row">
                         {products.map((product, index) => {
                             return (
-                                <div key={index} className="col-4 mb-4">
+                                <div key={index} className="col-12 col-md-3 mb-4">
                                     <Card product={product} />
                                 </div>
                             )

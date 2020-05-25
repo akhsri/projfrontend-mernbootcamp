@@ -17,13 +17,11 @@ const Cart = () => {
     const loadAllProducts = (products) => {
         return (
             <div>
-                <span>
-                    <h2>Shopping Cart</h2>
-                </span>
+
                 <div className="row">
                     {products.map((product, index) => {
                         return (
-                            <div className="col-4 mb-4">
+                            <div className="col-12 col-md-3 mb-4">
                                 <Card
                                     key={index}
                                     product={product}
@@ -50,13 +48,50 @@ const Cart = () => {
 
     return (
         <Base title="Cart Page" description="Ready to checkout">
+
+            <div className="row border mb-5" style={{ backgroundColor: "lightcoral", borderRadius: "20px" }}>
+                <div className="col-12 col-md-4" >
+                    <img src="https://assets-ouch.icons8.com/thumb/512/4bb05dde-7b72-4683-b786-9a9b7b41e6b3.png" alt="cart-img" style={{ height: "100%", width: "100%" }} />
+                </div>
+                <div className="col-12 col-md-8 text-center text-white"
+                    style={{ padding: "10%", fontFamily: "serif" }}>
+                    {products !== undefined && products.length > 0 ?
+                        (<h3>Your cart items appear here.</h3>) :
+                        (<h3>
+                            You haven't added anything yet to the cart.
+                             Add items to see them here.
+
+                        </h3>)}
+                </div>
+            </div>
+
             <div className="row  text-center">
-                <div className="col-9">{products.length > 0 ? (
-                    loadAllProducts(products)
+                <div className=" col-12 col-md-9">{products !== undefined && products.length > 0 ? (
+                    <div>
+
+
+                        <div className="row">
+                            {loadAllProducts(products)}
+                        </div>
+                    </div>
                 ) : (
-                        <h3>No product in cart</h3>
+                        <div></div>
                     )}</div>
-                <div className="col-3"><PaymentB products={products} setReload={setReload} /></div>
+
+                {
+                    products !== undefined && products.length > 0 ? (
+                        <div className="col-12 col-md-3 border p-3"
+                            style={{ borderRadius: "20px", backgroundColor: "whitesmoke" }}>
+
+                            <PaymentB products={products} setReload={setReload} />
+
+                        </div>
+                    )
+                        :
+                        (<div></div>)
+
+
+                }
 
             </div>
         </Base>
