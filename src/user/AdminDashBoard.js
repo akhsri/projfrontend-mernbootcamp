@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Base from '../core/Base';
 import { isAuthenticated } from '../auth/helper';
 import { Link } from "react-router-dom"
+import Menu from '../core/Menu';
+import Footer from '../core/Footer';
 
 
 const AdminDashBoard = () => {
@@ -10,24 +12,26 @@ const AdminDashBoard = () => {
     const adminLeftSide = () => {
         return (
             <div className="card">
-                <h4 className="card-header bg-dark text-white">
+                <h4 className="card-header bg-light text-dark">
                     Admin Navigation
                 </h4>
-                <ul className="list-group">
-                    <Link to="/admin/create/category" className="nav-link text-success">Create Categories</Link>
-                </ul>
-                <ul className="list-group">
-                    <Link to="/admin/categories" className="nav-link text-success">Manage Categories</Link>
-                </ul>
-                <ul className="list-group">
-                    <Link to="/admin/create/product" className="nav-link text-success">Create Products</Link>
-                </ul>
-                <ul className="list-group">
-                    <Link to="/admin/products" className="nav-link text-success">Manage Products</Link>
-                </ul>
-                <ul className="list-group">
-                    <Link to="/admin/orders" className="nav-link text-success">Manage Orders</Link>
-                </ul>
+                <div>
+                    <ul className="list-group">
+                        <Link to="/admin/create/category" className="nav-link text-danger">Create Categories</Link>
+                    </ul>
+                    <ul className="list-group">
+                        <Link to="/admin/categories" className="nav-link text-danger">Manage Categories</Link>
+                    </ul>
+                    <ul className="list-group">
+                        <Link to="/admin/create/product" className="nav-link text-danger">Create Products</Link>
+                    </ul>
+                    <ul className="list-group">
+                        <Link to="/admin/products" className="nav-link text-danger">Manage Products</Link>
+                    </ul>
+                    <ul className="list-group">
+                        <Link to="/admin/orders" className="nav-link text-danger">Manage Orders</Link>
+                    </ul>
+                </div>
             </div>
         )
     };
@@ -54,17 +58,22 @@ const AdminDashBoard = () => {
     }
 
     return (
-        <Base
-            title="Welcome to admin area"
-            description="Manage all of your products here"
-            className="container bg-success p-4"
-        >
-            <div className="row">
-                <div className="col-3">{adminLeftSide()}</div>
-                <div className="col-9">{adminRightSide()}</div>
+        <Fragment>
+
+            <div >
+                <Menu />
+                <div className="border m-5"
+                    style={{ padding: "5%", backgroundColor: "lightcoral" }}
+                >
+                    <div className="row">
+                        <div className="col-12 col-md-3 p-2">{adminLeftSide()}</div>
+                        <div className="col-12 col-md-9 p-2">{adminRightSide()}</div>
+                    </div>
+                </div>
+                <Footer />
             </div>
 
-        </Base>
+        </Fragment>
     )
 }
 
