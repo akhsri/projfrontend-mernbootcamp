@@ -61,12 +61,20 @@ const Card = ({ product,
     return (
         <Fragment>
             <div className="card text-dark bg-light border border-gray" id="card">
-                <div className="card-header lead">{cardTitle}</div>
+                <div className="card-header lead">
+                    <h4>
+                    {cardTitle}
+                    </h4>
+                </div>
                 <div className="card-body">
                     {getARedirect(redirect)}
                     <ImageHelper product={product} />
 
-                    <h4 className="lead font-weight-normal text-wrap  py-2">
+                    <h4 className="lead font-weight-normal text-wrap  py-2" style={{
+                        "overflow": 'hidden',
+                        "text-overflow": 'ellipsis',
+                        "width": "200px"
+                    }}>
                         {cardDescription}
                     </h4>
                     <h4 className="btn btn-danger rounded  btn-sm px-4">$ {cardPrice}</h4>
