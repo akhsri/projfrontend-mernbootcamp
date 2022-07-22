@@ -91,7 +91,7 @@ const Signup = () => {
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <div className="alert alert-danger " style={{ display: success ? "" : "none" }}>
-                        New account created successfully. Please  <Link to="/signup">Login Here</Link>
+                        New account created successfully. Please  <Link to="/signin">Login Here</Link>
                     </div>
                 </div>
             </div>

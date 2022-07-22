@@ -25,10 +25,26 @@ const Signin = () => {
         setValues({ ...values, error: false, [name]: event.target.value })
     }
 
-    const onSubmit = event => {
+    const onSubmit = (event, key) => {
+        console.log("key: ", key)
         event.preventDefault();
         setValues({ ...values, error: false, loading: true })
-        signin({ email, password })
+
+        let obj;
+        if(key===0){
+            obj = {
+                email: 'guest@domain.com',
+                password: 'qwerty'
+            }
+        } else if(key===1){
+            obj = {
+                email: 'guestadmin@domain.com',
+                password: 'qwerty'
+            }
+        } else {
+            obj = {email, password}
+        }
+        signin(obj)
             .then(data => {
                 if (data.error) {
                     setValues({ ...values, error: data.error, loading: false })
@@ -103,6 +119,8 @@ const Signin = () => {
                                 <input onChange={handleChange("password")} value={password} className="form-control" type="password" />
                             </div>
                             <button onClick={onSubmit} className="btn btn-success btn-block">Submit</button>
+                            <button onClick={(e)=> {onSubmit(e, 0)}} className="btn btn-success btn-block">Guest Signin</button>
+                            <button onClick={(e) => {onSubmit(e,1)}} className="btn btn-success btn-block">Guest Admin Signin</button>
                         </form>
                     </div>
                 </div>
